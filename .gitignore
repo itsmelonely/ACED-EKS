@@ -1,0 +1,17 @@
+# Ignore auto-generated file
+terraform/.terraform/*
+terraform/.terraform.lock.hcl
+terraform/*.tfoverride
+terraform/*.auto.tfvars
+terraform/.envrc
+terraform/.terraformrc
+terraform/terraform.rc
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/crash.log
+terraform/crash.*.log
+terraform/*.zip
+*.pem
+*.pub
+*.key
+*.zip
