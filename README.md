@@ -31,7 +31,7 @@ This project consists of three main components:
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/itsmelonely/ACED-EKS.git
 cd senior-project
 ```
 
