@@ -1,4 +1,4 @@
-# Senior Project - DevOps Platform
+# Senior Project - AUTOMATED TOOL FOR DEPLOYING CUSTOM CI/CD PIPELINE USING AMAZON ELASTIC KUBERNETES SERVICES
 
 A comprehensive DevOps platform that provides infrastructure automation, CI/CD pipeline management, and project deployment capabilities using modern cloud-native technologies.
 
