@@ -1,4 +1,6 @@
 # Ignore auto-generated file
+api/node_modules
+api/dist
 terraform/.terraform/*
 terraform/.terraform.lock.hcl
 terraform/*.tfoverride
@@ -14,4 +16,3 @@ terraform/*.zip
 *.pem
 *.pub
 *.key
-*.zip
