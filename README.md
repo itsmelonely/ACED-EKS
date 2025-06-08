@@ -246,11 +246,6 @@ This project is part of a senior project and is for educational purposes.
 3. **GitLab Installation Issues**
    - Check if the EC2 instance has sufficient resources
    - Verify security group allows HTTP/HTTPS traffic
-
-## 📞 Support
-
-For questions or issues related to this senior project, please create an issue in the repository or contact the project maintainer.
-
 ---
 
 **Note**: This is a senior project developed for educational purposes. Please ensure you understand the AWS costs associated with running this infrastructure before deployment.
