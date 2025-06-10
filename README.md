@@ -23,8 +23,7 @@ This project consists of three main components:
 - Ubuntu 22.04+
 - Node Package Manager (npm)
 - Node Version Manager (nvm)
-- 
-- Node.js (v18 or higher)
+- Node.js (v20 or higher)
 - AWS CLI configured with appropriate credentials
 - Terraform (v1.0 or higher)
 - kubectl
