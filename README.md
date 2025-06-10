@@ -24,6 +24,8 @@ This project consists of three main components:
 - Node Package Manager (npm)
 - Node Version Manager (nvm)
 - Node.js (v20 or higher)
+- TypeScript
+- PM2
 - AWS CLI configured with appropriate credentials
 - Terraform (v1.0 or higher)
 - kubectl
@@ -32,32 +34,48 @@ This project consists of three main components:
 
 ## 🛠️ Installation & Setup
 
-### 1. Clone the Repository
+### 1. Install Prerequisite
+```bash
+wget -O- https://apt.releases.hashicorp.com/gpg | \
+gpg --dearmor | \
+sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt-get update
+sudo apt-get install -y gnupg software-properties-common
+sudo apt-get install -y unzip
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+sudo apt-get install -y terraform
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+nvm install --lts
+npm install -g pm2
+npm install -g typescript
+```
 
+### 2. Clone the Repository
 ```bash
 git clone https://github.com/itsmelonely/ACED-EKS.git
 cd senior-project
 ```
 
-### 2. Frontend Setup
+### 3. Frontend Setup
 
 ```bash
 cd app
 npm install
-npm run dev
 ```
 
-The frontend will be available at `http://localhost:3000`
 
-### 3. Backend API Setup
+### 4. Backend API Setup
 
 ```bash
 cd api
 npm install
-npm run dev
+tsc
 ```
 
-### 4. NGINX Reverse Proxy
+### 5. NGINX Reverse Proxy
 
 Install and start NGINX
 ```bash
@@ -145,24 +163,6 @@ senior-project/
 └── scripts/              # Utility scripts
 ```
 
-## 🔧 Configuration
-
-### Environment Variables
-
-Create appropriate environment files for each component:
-
-**Frontend (.env)**
-```
-API_BASE_URL=http://localhost:3001
-```
-
-**Backend (.env)**
-```
-PORT=3001
-AWS_REGION=ap-southeast-7
-```
-
-
 ## 🚀 Deployment
 
 ### Development
@@ -183,22 +183,24 @@ npm install -g pm2
 #### Build and Deploy
 ```bash
 # Build frontend
-cd app && npm run build
+cd app
+npm run generate
+
 
 # Build API (if using TypeScript)
-cd api && npm run build
+cd api && tsc
 
 # Start API with PM2
 pm2 start api/src/index.js --name "devops-api" --env production
 
 # Start Frontend with PM2
-pm2 start app/.output/server/index.mjs --name "devops-frontend" --env production
-
-# Save PM2 configuration
-pm2 save
+pm2 serve app/dist --name "devops-frontend" --env production
 
 # Setup PM2 to start on system boot
 pm2 startup
+
+# Save PM2 configuration
+pm2 save
 ```
 
 #### PM2 Management
