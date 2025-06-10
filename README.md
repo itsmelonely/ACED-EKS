@@ -20,10 +20,15 @@ This project consists of three main components:
 
 ## 📋 Prerequisites
 
+- Ubuntu 22.04+
+- Node Package Manager (npm)
+- Node Version Manager (nvm)
+- 
 - Node.js (v18 or higher)
 - AWS CLI configured with appropriate credentials
 - Terraform (v1.0 or higher)
 - kubectl
+- NGINX
 - Docker (optional, for containerization)
 
 ## 🛠️ Installation & Setup
@@ -54,6 +59,14 @@ npm run dev
 ```
 
 ### 4. NGINX Reverse Proxy
+
+Install and start NGINX
+```bash
+sudo apt update
+sudo apt install nginx
+sudo systemctl start nginx
+sudo systemctl enable nginx
+```
 
 Add this configuration into nginx file
 ```
@@ -100,7 +113,7 @@ The Terraform configuration provisions:
 
 ### Web Interface
 
-1. Access the web interface at `http://localhost:3000`
+1. Access the web interface at `http://localhost` or `http://host-ip-address`
 2. Select a project template
 3. Configure your project profile (AWS credentials, region, etc.)
 4. Launch your infrastructure and applications
@@ -147,16 +160,9 @@ API_BASE_URL=http://localhost:3001
 **Backend (.env)**
 ```
 PORT=3001
-DATABASE_URL=your_database_url
 AWS_REGION=ap-southeast-7
 ```
 
-**Terraform (var.tfvars)**
-```
-region = "ap-southeast-7"
-vpc_cidr = "10.0.0.0/16"
-eks_cluster_name = "your-cluster-name"
-```
 
 ## 🚀 Deployment
 
