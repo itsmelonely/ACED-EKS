@@ -61,7 +61,7 @@ npm install -g typescript
 ### 2. Clone the Repository
 ```bash
 git clone https://github.com/itsmelonely/ACED-EKS.git
-cd senior-project
+cd ACED-EKS
 ```
 
 ### 3. Frontend Setup
