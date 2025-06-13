@@ -28,9 +28,14 @@ This project consists of three main components:
 - PM2
 - AWS CLI configured with appropriate credentials
 - Terraform (v1.0 or higher)
+- Custom GitLab EC2 AMI (explaination in next section)
+- an EC2 key pair (for EC2 provisioned by the terraform script)
 - kubectl
 - NGINX
 - Docker (optional, for containerization)
+
+### Setting up Custom GitLab AMI
+To create a custom GitLab EC2 AMI, you'll first launch an Ubuntu 22.04 EC2 instance, then manually install and configure GitLab on it, making sure it's set to start automatically on boot. Before creating the AMI, it's a good idea to perform some cleanup, like clearing logs and history. Finally, stop the instance and create an AMI from it. When using this custom AMI with Terraform, you'll leverage user_data to apply instance-specific configurations like the EXTERNAL_URL and initial root password during launch. It's crucial to remember that Linux distributions vary significantly: the package manager (e.g., apt for Ubuntu, yum/dnf for RHEL/CentOS/Amazon Linux), GitLab's installation script and dependencies, and even the default user for SSH access (e.g., ubuntu for Ubuntu, ec2-user for Amazon Linux) will differ, so always consult GitLab's official documentation for your chosen base OS.
 
 ## 🛠️ Installation & Setup
 
