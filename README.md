@@ -90,7 +90,7 @@ sudo systemctl start nginx
 sudo systemctl enable nginx
 ```
 
-Add this configuration into nginx file
+Add this configuration into /etc/nginx/site-available/default
 ```
 server {
 	listen 80 default_server;
